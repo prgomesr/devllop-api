@@ -3,6 +3,7 @@ package com.devllop.api.model;
 import java.time.LocalDate;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -41,9 +42,11 @@ public class Cliente {
 	
 	@NotNull
 	@Size(max=20)
+	@Column(name="telefone_principal")
 	private String telefonePrincipal;
 	
 	@Size(max=20)
+	@Column(name="telefone_secundario")
 	private String telefoneSecundario;
 	
 	@Size(max=70)

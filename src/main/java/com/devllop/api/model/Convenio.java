@@ -2,6 +2,7 @@ package com.devllop.api.model;
 
 import java.math.BigDecimal;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -24,9 +25,11 @@ public class Convenio {
 	@Size(max=45)
 	private String numero;
 	
-	private BigDecimal tx_juros;
+	@Column(name="tx_juros")
+	private BigDecimal txJuros;
 	
-	private BigDecimal tx_multa;
+	@Column(name="tx_multa")
+	private BigDecimal txMulta;
 	
 	@ManyToOne
 	@JoinColumn(name="conta_id")
@@ -48,20 +51,20 @@ public class Convenio {
 		this.numero = numero;
 	}
 
-	public BigDecimal getTx_juros() {
-		return tx_juros;
+	public BigDecimal getTxJuros() {
+		return txJuros;
 	}
 
-	public void setTx_juros(BigDecimal tx_juros) {
-		this.tx_juros = tx_juros;
+	public void setTxJuros(BigDecimal txJuros) {
+		this.txJuros = txJuros;
 	}
 
-	public BigDecimal getTx_multa() {
-		return tx_multa;
+	public BigDecimal getTxMulta() {
+		return txMulta;
 	}
 
-	public void setTx_multa(BigDecimal tx_multa) {
-		this.tx_multa = tx_multa;
+	public void setTxMulta(BigDecimal txMulta) {
+		this.txMulta = txMulta;
 	}
 
 	public Conta getConta() {

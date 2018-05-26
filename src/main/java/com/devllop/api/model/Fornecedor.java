@@ -1,6 +1,7 @@
 package com.devllop.api.model;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -21,6 +22,7 @@ public class Fornecedor {
 	
 	@NotNull
 	@Size(max=70)
+	@Column(name="razao_social")
 	private String razaoSocial;
 	
 	@NotNull
@@ -31,17 +33,21 @@ public class Fornecedor {
 	private String cnpj;
 	
 	@Size(max=45)
+	@Column(name="insc_estadual")
 	private String inscEstadual;
 	
 	@Size(max=45)
+	@Column(name="insc_municipal")
 	private String inscMunicipal;
 	
 	private Boolean isento;
 	
 	@Size(max=20)
+	@Column(name="telefone_principal")
 	private String telefonePrincipal;
 	
 	@Size(max=20)
+	@Column(name="telefone_secundario")
 	private String telefoneSecundario;
 	
 	@Size(max=45)

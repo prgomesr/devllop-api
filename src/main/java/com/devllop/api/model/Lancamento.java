@@ -3,6 +3,7 @@ package com.devllop.api.model;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -32,32 +33,42 @@ public class Lancamento {
 	@NotNull
 	private BigDecimal valor;
 	
+	@Column(name="valor_recebido")
 	private BigDecimal valorRecebido;
 	
 	@NotNull
+	@Column(name="data_vencimento")
 	private LocalDate dataVencimento;
 	
+	@Column(name="data_pagamento")
 	private LocalDate dataPagamento;
 	
+	@Column(name="data_balanco")
 	private LocalDate dataBalanco;
 	
 	@Size(max=255)
 	private String observacao;
 	
 	@NotNull
+	@Column(name="conta_fixa")
 	private Boolean contaFixa;
 	
 	@Size(max=45)
+	@Column(name="num_documento")
 	private String numDocumento;
 	
 	@Size(max=45)
+	@Column(name="num_nf")
 	private String numNf;
 	
 	@Size(max=45)
+	@Column(name="nosso_numero")
 	private String nossoNumero;
 	
+	@Column(name="valor_juros")
 	private BigDecimal valorJuros;
 	
+	@Column(name="valor_multa")
 	private BigDecimal valorMulta;
 	
 	@NotNull
