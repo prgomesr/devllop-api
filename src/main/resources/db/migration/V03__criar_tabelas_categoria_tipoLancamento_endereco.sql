@@ -20,12 +20,12 @@ ENGINE = InnoDB default charset=utf8;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `devllop`.`endereco` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `logradouro` VARCHAR(70) NOT NULL,
-  `numero` INT NOT NULL,
+  `logradouro` VARCHAR(70) NULL,
+  `numero` INT  NULL,
   `complemento` VARCHAR(45) NULL,
-  `bairro` VARCHAR(70) NOT NULL,
-  `cidade` VARCHAR(70) NOT NULL,
-  `uf` CHAR(2) NOT NULL,
-  `cep` VARCHAR(20) NOT NULL,
+  `bairro` VARCHAR(70)  NULL,
+  `cidade` VARCHAR(70) NULL,
+  `uf` CHAR(2)  NULL,
+  `cep` VARCHAR(20)  NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB default charset=utf8;

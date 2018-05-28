@@ -16,7 +16,6 @@ public class Endereco {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 	
-	@NotNull
 	@Size(max=70)
 	private String logradouro;
 	
@@ -25,19 +24,15 @@ public class Endereco {
 	@Size(max=45)
 	private String complemento;
 	
-	@NotNull
 	@Size(max=70)
 	private String bairro;
 	
-	@NotNull
 	@Size(max=70)
 	private String cidade;
 	
-	@NotNull
 	@Size(max=2)
 	private String uf;
 	
-	@NotNull
 	@Size(max=20)
 	private String cep;
 	
