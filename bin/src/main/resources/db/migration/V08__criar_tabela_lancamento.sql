@@ -1,4 +1,4 @@
-CREATE TABLE IF NOT EXISTS  `lancamento` (
+CREATE TABLE IF NOT EXISTS `devllop`.`lancamento` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `tipo` VARCHAR(25) NOT NULL COMMENT 'RECEITA, DESPESA',
   `descricao` VARCHAR(100) NOT NULL,
@@ -28,27 +28,27 @@ CREATE TABLE IF NOT EXISTS  `lancamento` (
   INDEX `fk_LACAMENTOS_CLIENTE1_idx` (`cliente_id` ASC),
   CONSTRAINT `fk_LACAMENTOS_CONTA1`
     FOREIGN KEY (`conta_id`)
-    REFERENCES  `conta` (`id`)
+    REFERENCES `devllop`.`conta` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_LACAMENTOS_CATEGORIA1`
     FOREIGN KEY (`categoria_id`)
-    REFERENCES  `categoria` (`id`)
+    REFERENCES `devllop`.`categoria` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_LACAMENTOS_TIPO_LANCAMENTO1`
     FOREIGN KEY (`tipo_lancamento_id`)
-    REFERENCES  `tipo_lancamento` (`id`)
+    REFERENCES `devllop`.`tipo_lancamento` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_LACAMENTOS_FORNECEDOR1`
     FOREIGN KEY (`fornecedor_id`)
-    REFERENCES  `fornecedor` (`id`)
+    REFERENCES `devllop`.`fornecedor` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_LACAMENTOS_CLIENTE1`
     FOREIGN KEY (`cliente_id`)
-    REFERENCES  `cliente` (`id`)
+    REFERENCES `devllop`.`cliente` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB default charset=utf8;
