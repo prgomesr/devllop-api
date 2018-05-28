@@ -12,12 +12,15 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
 import com.devllop.api.event.RecursoCriadoEvent;
 import com.devllop.api.model.Banco;
 import com.devllop.api.repository.BancoRepository;
+import com.devllop.api.service.BancoService;
 
 @RestController
 @RequestMapping("/bancos")
@@ -28,6 +31,9 @@ public class BancoResource {
 	
 	@Autowired
 	private ApplicationEventPublisher publisher;
+	
+	@Autowired
+	private BancoService bancoService;
 	
 	@GetMapping
 	public List<Banco> listar() {
@@ -47,6 +53,12 @@ public class BancoResource {
 	public ResponseEntity<Banco> buscarPeloId(@PathVariable Long id) {
 		Banco banco  = bancoRepository.findOne(id);
 		return banco != null ? ResponseEntity.ok(banco) : ResponseEntity.notFound().build();
+	}
+	
+	@PutMapping("/{id}")
+	public ResponseEntity<Banco> atualizar(@PathVariable Long id, @Valid @RequestBody Banco banco) {
+		Banco bancoSalvo = bancoService.atualizar(id, banco);
+		return ResponseEntity.ok(bancoSalvo);
 	}
 
 }
