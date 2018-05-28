@@ -8,7 +8,7 @@ ENGINE = InnoDB default charset=utf8;
 
 
 -- -----------------------------------------------------
--- Table  `agencia`
+-- Table `devllop`.`agencia`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS agencia (
   `id` INT NOT NULL AUTO_INCREMENT,
@@ -21,7 +21,7 @@ CREATE TABLE IF NOT EXISTS agencia (
   INDEX `fk_AGENCIA_BANCO1_idx` (`banco_id` ASC),
   CONSTRAINT `fk_AGENCIA_BANCO1`
     FOREIGN KEY (`banco_id`)
-    REFERENCES `banco` (`id`)
+    REFERENCES `devllop`.`banco` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB default charset=utf8;

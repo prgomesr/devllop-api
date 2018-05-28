@@ -1,4 +1,4 @@
-CREATE TABLE IF NOT EXISTS  `conta` (
+CREATE TABLE IF NOT EXISTS `devllop`.`conta` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `descricao` VARCHAR(45) NOT NULL,
   `numero` VARCHAR(20) NULL,
@@ -12,12 +12,12 @@ CREATE TABLE IF NOT EXISTS  `conta` (
   INDEX `fk_CONTA_EMPRESA1_idx` (`empresa_id` ASC),
   CONSTRAINT `fk_CONTA_AGENCIA`
     FOREIGN KEY (`agencia_id`)
-    REFERENCES  `agencia` (`id`)
+    REFERENCES `devllop`.`agencia` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_CONTA_EMPRESA1`
     FOREIGN KEY (`empresa_id`)
-    REFERENCES  `empresa` (`id`)
+    REFERENCES `devllop`.`empresa` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB default charset=utf8;

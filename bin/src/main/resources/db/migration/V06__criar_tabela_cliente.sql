@@ -1,4 +1,4 @@
-CREATE TABLE IF NOT EXISTS  `cliente` (
+CREATE TABLE IF NOT EXISTS `devllop`.`cliente` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `cpf` VARCHAR(20) NOT NULL,
   `rg` VARCHAR(20) NULL,
@@ -16,12 +16,12 @@ CREATE TABLE IF NOT EXISTS  `cliente` (
   INDEX `fk_CLIENTE_ESTADO_CIVIL1_idx` (`estado_civil_id` ASC),
   CONSTRAINT `fk_CLIENTE_ENDERECO1`
     FOREIGN KEY (`endereco_id`)
-    REFERENCES  `endereco` (`id`)
+    REFERENCES `devllop`.`endereco` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_CLIENTE_ESTADO_CIVIL1`
     FOREIGN KEY (`estado_civil_id`)
-    REFERENCES  `estado_civil` (`id`)
+    REFERENCES `devllop`.`estado_civil` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB default charset=utf8;
