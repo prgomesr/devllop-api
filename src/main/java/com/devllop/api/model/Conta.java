@@ -41,6 +41,7 @@ public class Conta {
 	@JoinColumn(name="agencia_id")
 	private Agencia agencia;
 	
+	@NotNull
 	@ManyToOne
 	@JoinColumn(name="empresa_id")
 	private Empresa empresa;
