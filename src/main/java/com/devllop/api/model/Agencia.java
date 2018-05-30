@@ -8,6 +8,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table (name= "agencia")
@@ -18,14 +19,19 @@ public class Agencia {
 	private Long id;
 	
 	@NotNull
+	@Size(max=20)
 	private String numero;
 	
+	@Size(max=1)
 	private String digito;
 	
+	@Size(max=20)
 	private String telefone;
 	
+	@Size(max=45)
 	private String gerente;
 	
+	@NotNull
 	@ManyToOne
 	@JoinColumn(name="banco_id")
 	private Banco banco;
