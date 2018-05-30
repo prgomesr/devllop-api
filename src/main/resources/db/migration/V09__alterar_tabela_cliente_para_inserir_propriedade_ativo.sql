@@ -1,0 +1,2 @@
+ALTER TABLE cliente
+ADD COLUMN `ativo` TINYINT NOT NULL AFTER `observacao`;

@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.devllop.api.event.RecursoCriadoEvent;
@@ -62,4 +63,11 @@ public class ClienteResource {
 		Cliente clienteSalvo = clienteService.atualizar(id, cliente);
 		return ResponseEntity.ok(clienteSalvo);
 	}
+	
+	@PutMapping("/{id}/ativo")
+	@ResponseStatus(HttpStatus.NO_CONTENT)
+	public void atualizarPropriedadeAtivo(@PathVariable Long id, @RequestBody Boolean ativo) {
+		clienteService.atualizarPropriedadeAtivo(id, ativo);
+	}
+	
 }

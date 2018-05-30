@@ -55,6 +55,9 @@ public class Cliente {
 	@Size(max=255)
 	private String observacao;
 	
+	@NotNull
+	private Boolean ativo;
+	
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="endereco_id")
 	private Endereco endereco;
@@ -141,6 +144,14 @@ public class Cliente {
 
 	public void setObservacao(String observacao) {
 		this.observacao = observacao;
+	}
+	
+	public Boolean getAtivo() {
+		return ativo;
+	}
+
+	public void setAtivo(Boolean ativo) {
+		this.ativo = ativo;
 	}
 
 	public Endereco getEndereco() {

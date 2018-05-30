@@ -75,10 +75,12 @@ public class Lancamento {
 	@Size(max=25)
 	private String situacao;
 	
+	@NotNull
 	@ManyToOne
 	@JoinColumn(name="conta_id")
 	private Conta conta;
 	
+	@NotNull
 	@ManyToOne
 	@JoinColumn(name="categoria_id")
 	private Categoria categoria;

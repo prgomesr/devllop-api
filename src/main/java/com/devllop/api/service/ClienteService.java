@@ -15,12 +15,24 @@ public class ClienteService {
 	private ClienteRepository clienteRepository;
 	
 	public Cliente atualizar(Long id, Cliente cliente) {
+		Cliente clienteSalvo = findObjectByID(id);
+		BeanUtils.copyProperties(cliente, clienteSalvo, "id");
+		return clienteRepository.save(clienteSalvo);
+	}
+
+
+	public void atualizarPropriedadeAtivo(Long id, Boolean ativo) {
+		Cliente clienteSalvo = findObjectByID(id);
+		clienteSalvo.setAtivo(ativo);
+		clienteRepository.save(clienteSalvo);
+	}
+	
+	private Cliente findObjectByID(Long id) {
 		Cliente clienteSalvo = clienteRepository.findOne(id);
 		if (clienteSalvo == null) {
 			throw new EmptyResultDataAccessException(1);
 		}
-		BeanUtils.copyProperties(cliente, clienteSalvo, "id");
-		return clienteRepository.save(clienteSalvo);
+		return clienteSalvo;
 	}
 
 }
