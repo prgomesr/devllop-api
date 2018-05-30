@@ -31,6 +31,7 @@ public class Convenio {
 	@Column(name="tx_multa")
 	private BigDecimal txMulta;
 	
+	@NotNull
 	@ManyToOne
 	@JoinColumn(name="conta_id")
 	private Conta conta;
