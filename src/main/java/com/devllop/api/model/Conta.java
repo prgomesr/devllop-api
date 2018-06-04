@@ -40,7 +40,7 @@ public class Conta {
 	@NotNull
 	private Boolean caixinha;
 	
-	@ManyToOne()
+	@ManyToOne(optional=true)
 	@JoinColumn(name="agencia_id")
 	private Agencia agencia;
 	
