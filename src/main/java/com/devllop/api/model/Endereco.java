@@ -48,7 +48,7 @@ public class Endereco {
 	}
 	
 	public void setLogradouro(String logradouro) {
-		this.logradouro = logradouro;
+		this.logradouro = logradouro.toUpperCase();
 	}
 	
 	public int getNumero() {
@@ -64,7 +64,7 @@ public class Endereco {
 	}
 	
 	public void setComplemento(String complemento) {
-		this.complemento = complemento;
+		this.complemento = complemento.toUpperCase();
 	}
 	
 	public String getBairro() {
@@ -72,7 +72,7 @@ public class Endereco {
 	}
 	
 	public void setBairro(String bairro) {
-		this.bairro = bairro;
+		this.bairro = bairro.toUpperCase();
 	}
 	
 	public String getCidade() {
@@ -80,7 +80,7 @@ public class Endereco {
 	}
 	
 	public void setCidade(String cidade) {
-		this.cidade = cidade;
+		this.cidade = cidade.toUpperCase();
 	}
 	
 	public String getUf() {
@@ -88,7 +88,7 @@ public class Endereco {
 	}
 	
 	public void setUf(String uf) {
-		this.uf = uf;
+		this.uf = uf.toUpperCase();
 	}
 	
 	public String getCep() {

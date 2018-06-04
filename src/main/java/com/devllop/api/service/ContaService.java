@@ -22,6 +22,14 @@ public class ContaService {
 		BeanUtils.copyProperties(conta, contaSalva, "id");
 		return contaRepository.save(contaSalva);
 	}
+
+	public Conta salvar(Conta conta) {
+		if (conta.getCaixinha() == true) {
+			conta.setAgencia(null);
+		}
+		conta.setSaldoAtual(conta.getSaldoInicial());
+		return contaRepository.save(conta);
+	}
 	
 	
 }

@@ -42,7 +42,7 @@ public class ContaResource {
 	
 	@PostMapping
 	public ResponseEntity<Conta> criar(@Valid @RequestBody Conta conta, HttpServletResponse response ) {
-		Conta contaSalva = contaRepository.save(conta);
+		Conta contaSalva = contaService.salvar(conta);
 		
 		publisher.publishEvent(new RecursoCriadoEvent(this, response, contaSalva.getId()));
 		

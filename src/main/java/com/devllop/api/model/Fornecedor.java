@@ -9,6 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -59,6 +60,7 @@ public class Fornecedor {
 	@Size(max=255)
 	private String observacao;
 	
+	@Transient
 	@OneToOne(cascade =  CascadeType.ALL)
 	@JoinColumn(name="endereco_id")
 	private Endereco endereco;
@@ -76,7 +78,7 @@ public class Fornecedor {
 	}
 	
 	public void setRazaoSocial(String razaoSocial) {
-		this.razaoSocial = razaoSocial;
+		this.razaoSocial = razaoSocial.toUpperCase();
 	}
 	
 	public String getFantasia() {
@@ -84,7 +86,7 @@ public class Fornecedor {
 	}
 	
 	public void setFantasia(String fantasia) {
-		this.fantasia = fantasia;
+		this.fantasia = fantasia.toUpperCase();
 	}
 	
 	public String getCnpj() {
@@ -140,7 +142,7 @@ public class Fornecedor {
 	}
 	
 	public void setContato(String contato) {
-		this.contato = contato;
+		this.contato = contato.toUpperCase();
 	}
 	
 	public String getEmail() {

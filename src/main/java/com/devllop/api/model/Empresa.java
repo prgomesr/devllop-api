@@ -64,13 +64,13 @@ public class Empresa {
 		return fantasia;
 	}
 	public void setFantasia(String fantasia) {
-		this.fantasia = fantasia;
+		this.fantasia = fantasia.toUpperCase();
 	}
 	public String getRazaoSocial() {
 		return razaoSocial;
 	}
 	public void setRazaoSocial(String razaoSocial) {
-		this.razaoSocial = razaoSocial;
+		this.razaoSocial = razaoSocial.toUpperCase();
 	}
 	public String getInscEstadual() {
 		return inscEstadual;

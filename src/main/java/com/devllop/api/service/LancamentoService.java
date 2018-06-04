@@ -22,5 +22,15 @@ public class LancamentoService {
 		BeanUtils.copyProperties(lancamento, lancamentoSalvo, "id");
 		return lancamentoRepository.save(lancamentoSalvo);
 	}
+
+	public Lancamento salvar(Lancamento lancamento) {
+		if (lancamento.getTipo().equals("RECEITA")) {
+			lancamento.setFornecedor(null);
+		} else if (lancamento.getTipo().equals("DESPESA")) {
+			lancamento.setCliente(null);
+		}
+		lancamento.setTipoLancamento(null);
+		return lancamentoRepository.save(lancamento);
+	}
 	
 }

@@ -118,7 +118,7 @@ public class Lancamento {
 	}
 
 	public void setDescricao(String descricao) {
-		this.descricao = descricao;
+		this.descricao = descricao.toUpperCase();
 	}
 
 	public BigDecimal getValor() {
@@ -182,7 +182,7 @@ public class Lancamento {
 	}
 
 	public void setNumDocumento(String numDocumento) {
-		this.numDocumento = numDocumento;
+		this.numDocumento = numDocumento.toUpperCase();
 	}
 
 	public String getNumNf() {
@@ -190,7 +190,7 @@ public class Lancamento {
 	}
 
 	public void setNumNf(String numNf) {
-		this.numNf = numNf;
+		this.numNf = numNf.toUpperCase();
 	}
 
 	public String getNossoNumero() {
@@ -198,7 +198,7 @@ public class Lancamento {
 	}
 
 	public void setNossoNumero(String nossoNumero) {
-		this.nossoNumero = nossoNumero;
+		this.nossoNumero = nossoNumero.toUpperCase();
 	}
 
 	public BigDecimal getValorJuros() {

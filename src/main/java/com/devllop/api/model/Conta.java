@@ -37,7 +37,10 @@ public class Conta {
 	@Column(name="saldo_atual")
 	private BigDecimal saldoAtual;
 	
-	@ManyToOne
+	@NotNull
+	private Boolean caixinha;
+	
+	@ManyToOne()
 	@JoinColumn(name="agencia_id")
 	private Agencia agencia;
 	
@@ -59,7 +62,7 @@ public class Conta {
 	}
 
 	public void setDescricao(String descricao) {
-		this.descricao = descricao;
+		this.descricao = descricao.toUpperCase();
 	}
 
 	public String getNumero() {
@@ -92,6 +95,14 @@ public class Conta {
 
 	public void setSaldoAtual(BigDecimal saldoAtual) {
 		this.saldoAtual = saldoAtual;
+	}
+	
+	public Boolean getCaixinha() {
+		return caixinha;
+	}
+
+	public void setCaixinha(Boolean caixinha) {
+		this.caixinha = caixinha;
 	}
 
 	public Agencia getAgencia() {

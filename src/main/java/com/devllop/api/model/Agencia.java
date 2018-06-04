@@ -73,7 +73,7 @@ public class Agencia {
 	}
 
 	public void setGerente(String gerente) {
-		this.gerente = gerente;
+		this.gerente = gerente.toUpperCase();
 	}
 
 	public Banco getBanco() {
