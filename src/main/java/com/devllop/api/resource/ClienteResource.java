@@ -44,7 +44,8 @@ public class ClienteResource {
 	
 	@GetMapping("/{id}")
 	public ResponseEntity<Cliente> buscarPeloId(@PathVariable Long id) {
-		Cliente cliente  = clienteRepository.findOne(id);
+		Cliente cliente  = clienteService.buscarPorId(id);
+		
 		return cliente != null ? ResponseEntity.ok(cliente) : ResponseEntity.notFound().build();
 	}
 	

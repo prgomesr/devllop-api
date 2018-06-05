@@ -14,6 +14,8 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
 @Table(name="lancamento")
 public class Lancamento {
@@ -54,27 +56,28 @@ public class Lancamento {
 	private Boolean contaFixa;
 	
 	@Size(max=45)
-	@Column(name="num_documento")
+	@Column(name="num_documento", nullable=true)
 	private String numDocumento;
 	
 	@Size(max=45)
-	@Column(name="num_nf")
+	@Column(name="num_nf", nullable=true)
 	private String numNf;
 	
 	@Size(max=45)
-	@Column(name="nosso_numero")
+	@Column(name="nosso_numero", nullable=true)
 	private String nossoNumero;
 	
-	@Column(name="valor_juros")
+	@Column(name="valor_juros", nullable=true)
 	private BigDecimal valorJuros;
 	
-	@Column(name="valor_multa")
+	@Column(name="valor_multa", nullable=true)
 	private BigDecimal valorMulta;
 	
 	@NotNull
 	@Size(max=25)
 	private String situacao;
 	
+	@JsonIgnoreProperties({"agencia", "banco"})
 	@NotNull
 	@ManyToOne
 	@JoinColumn(name="conta_id")
@@ -89,10 +92,12 @@ public class Lancamento {
 	@JoinColumn(name="tipo_lancamento_id")
 	private TipoLancamento tipoLancamento;
 	
+	@JsonIgnoreProperties("endereco")
 	@ManyToOne
 	@JoinColumn(name="fornecedor_id")
 	private Fornecedor fornecedor;
 	
+	@JsonIgnoreProperties({"estadoCivil", "endereco"})
 	@ManyToOne
 	@JoinColumn(name="cliente_id")
 	private Cliente cliente;

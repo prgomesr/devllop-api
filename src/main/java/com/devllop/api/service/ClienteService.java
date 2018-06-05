@@ -6,6 +6,7 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
 import com.devllop.api.model.Cliente;
+import com.devllop.api.model.Endereco;
 import com.devllop.api.repository.ClienteRepository;
 
 @Service
@@ -33,6 +34,19 @@ public class ClienteService {
 			throw new EmptyResultDataAccessException(1);
 		}
 		return clienteSalvo;
+	}
+
+
+	public Cliente buscarPorId(Long id) {
+		Cliente cliente = clienteRepository.findOne(id);
+		if (cliente.getEndereco() == null) {
+			cliente.setEndereco(new Endereco());
+		}
+//		if (cliente.getNascimento() == null) {
+//			cliente.setNascimento();
+//		System.out.println(cliente.getNascimento());
+//		} TODO: VERIFICAR QUESTAO DA DATA DE NASCIMENTO
+		return cliente;
 	}
 
 }
