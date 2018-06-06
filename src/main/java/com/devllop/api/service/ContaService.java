@@ -19,17 +19,20 @@ public class ContaService {
 		if (contaSalva == null) {
 			throw new EmptyResultDataAccessException(1);
 		}
+		atualizarSaldo(conta);
 		BeanUtils.copyProperties(conta, contaSalva, "id");
 		return contaRepository.save(contaSalva);
 	}
 
 	public Conta salvar(Conta conta) {
-		if (conta.getCaixinha() == true) {
+		if (conta.getCarteira() == true) {
 			conta.setAgencia(null);
 		}
-		conta.setSaldoAtual(conta.getSaldoInicial());
+		atualizarSaldo(conta);
 		return contaRepository.save(conta);
 	}
 	
-	
+	private void atualizarSaldo(Conta conta) {
+		conta.setSaldoAtual(conta.getSaldoInicial());
+	}
 }

@@ -56,21 +56,21 @@ public class Lancamento {
 	private Boolean contaFixa;
 	
 	@Size(max=45)
-	@Column(name="num_documento", nullable=true)
+	@Column(name="num_documento")
 	private String numDocumento;
 	
 	@Size(max=45)
-	@Column(name="num_nf", nullable=true)
+	@Column(name="num_nf")
 	private String numNf;
 	
 	@Size(max=45)
-	@Column(name="nosso_numero", nullable=true)
+	@Column(name="nosso_numero")
 	private String nossoNumero;
 	
-	@Column(name="valor_juros", nullable=true)
+	@Column(name="valor_juros")
 	private BigDecimal valorJuros;
 	
-	@Column(name="valor_multa", nullable=true)
+	@Column(name="valor_multa")
 	private BigDecimal valorMulta;
 	
 	@NotNull
@@ -187,7 +187,7 @@ public class Lancamento {
 	}
 
 	public void setNumDocumento(String numDocumento) {
-		this.numDocumento = numDocumento.toUpperCase();
+		this.numDocumento = numDocumento;
 	}
 
 	public String getNumNf() {
@@ -195,7 +195,7 @@ public class Lancamento {
 	}
 
 	public void setNumNf(String numNf) {
-		this.numNf = numNf.toUpperCase();
+		this.numNf = numNf;
 	}
 
 	public String getNossoNumero() {
@@ -203,7 +203,7 @@ public class Lancamento {
 	}
 
 	public void setNossoNumero(String nossoNumero) {
-		this.nossoNumero = nossoNumero.toUpperCase();
+		this.nossoNumero = nossoNumero;
 	}
 
 	public BigDecimal getValorJuros() {

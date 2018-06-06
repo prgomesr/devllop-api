@@ -37,7 +37,7 @@ public class Banco {
 		this.numero = numero;
 	}
 	public String getNome() {
-		return nome.toUpperCase();
+		return nome;
 	}
 	public void setNome(String nome) {
 		this.nome = nome;

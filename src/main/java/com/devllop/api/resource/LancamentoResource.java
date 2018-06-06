@@ -59,6 +59,7 @@ public class LancamentoResource {
 	
 	@PutMapping("/{id}")
 	public ResponseEntity<Lancamento> atualizar(@PathVariable Long id, @Valid @RequestBody Lancamento lancamento) {
+		System.out.println("heloooo2");
 		Lancamento lancamentoSalvo = lancamentoService.atualizar(id, lancamento);
 		return ResponseEntity.ok(lancamentoSalvo);
 	}

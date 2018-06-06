@@ -1,0 +1,11 @@
+INSERT INTO  `banco` (`numero`, `nome`) VALUES ('001', 'Banco do Brasil S.A.');
+INSERT INTO  `banco` (`numero`, `nome`) VALUES ('341', 'Banco Itaú S.A.');
+INSERT INTO  `banco` (`numero`, `nome`) VALUES ('033', 'Banco Santander (Brasil) S.A.');
+INSERT INTO  `banco` (`numero`, `nome`) VALUES ('652', 'Itaú Unibanco Holding S.A.');
+INSERT INTO  `banco` (`numero`, `nome`) VALUES ('237', 'Banco Bradesco S.A.');
+INSERT INTO  `banco` (`numero`, `nome`) VALUES ('745', 'Banco Citibank S.A.');
+INSERT INTO  `banco` (`numero`, `nome`) VALUES ('399', 'HSBC Bank Brasil S.A. – Banco Múltiplo');
+INSERT INTO  `banco` (`numero`, `nome`) VALUES ('104', 'Caixa Econômica Federal');
+INSERT INTO  `banco` (`numero`, `nome`) VALUES ('389', 'Banco Mercantil do Brasil S.A.');
+INSERT INTO  `banco` (`numero`, `nome`) VALUES ('453', 'Banco Rural S.A.');
+INSERT INTO  `banco` (`numero`, `nome`) VALUES ('422', 'Banco Safra S.A.');

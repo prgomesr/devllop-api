@@ -19,6 +19,8 @@ public class LancamentoService {
 		if (lancamentoSalvo == null) {
 			throw new EmptyResultDataAccessException(1);
 		}
+		System.out.println(lancamentoSalvo);
+		System.out.println("heloooo");
 		BeanUtils.copyProperties(lancamento, lancamentoSalvo, "id");
 		return lancamentoRepository.save(lancamentoSalvo);
 	}

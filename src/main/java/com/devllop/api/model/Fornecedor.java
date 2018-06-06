@@ -142,7 +142,7 @@ public class Fornecedor {
 	}
 	
 	public void setContato(String contato) {
-		this.contato = contato.toUpperCase();
+		this.contato = contato;
 	}
 	
 	public String getEmail() {
