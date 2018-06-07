@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.devllop.api.event.RecursoCriadoEvent;
 import com.devllop.api.model.Lancamento;
 import com.devllop.api.repository.LancamentoRepository;
+import com.devllop.api.repository.filter.LancamentoFilter;
 import com.devllop.api.service.LancamentoService;
 
 @RestController
@@ -38,8 +39,8 @@ public class LancamentoResource {
 	private LancamentoService lancamentoService;
 	
 	@GetMapping
-	public List<Lancamento> listar() {
-		return lancamentoRepository.findAll();
+	public List<Lancamento> pesquisar(LancamentoFilter lancamentoFilter) {
+		return lancamentoRepository.filtrar(lancamentoFilter);
 	}
 	
 	@PostMapping
