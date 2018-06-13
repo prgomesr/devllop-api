@@ -1,12 +1,12 @@
 package com.devllop.api.resource;
 
-import java.util.List;
-
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -23,6 +23,7 @@ import com.devllop.api.event.RecursoCriadoEvent;
 import com.devllop.api.model.Lancamento;
 import com.devllop.api.repository.LancamentoRepository;
 import com.devllop.api.repository.filter.LancamentoFilter;
+import com.devllop.api.repository.projection.ResumoLancamento;
 import com.devllop.api.service.LancamentoService;
 
 @RestController
@@ -39,8 +40,13 @@ public class LancamentoResource {
 	private LancamentoService lancamentoService;
 	
 	@GetMapping
-	public List<Lancamento> pesquisar(LancamentoFilter lancamentoFilter) {
-		return lancamentoRepository.filtrar(lancamentoFilter);
+	public Page<Lancamento> pesquisar(LancamentoFilter lancamentoFilter, Pageable pageable) {
+		return lancamentoRepository.filtrar(lancamentoFilter, pageable);
+	}
+
+	@GetMapping(params = "resumo")
+	public Page<ResumoLancamento> resumir (LancamentoFilter lancamentoFilter, Pageable pageable) {
+		return lancamentoRepository.resumir (lancamentoFilter, pageable);
 	}
 	
 	@PostMapping
