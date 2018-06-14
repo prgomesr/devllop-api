@@ -1,11 +1,12 @@
 package com.devllop.api.resource;
 
-import java.util.List;
-
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,6 +20,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.devllop.api.event.RecursoCriadoEvent;
 import com.devllop.api.model.Fornecedor;
 import com.devllop.api.repository.FornecedorRepository;
+import com.devllop.api.repository.filter.FornecedorFilter;
+import com.devllop.api.repository.projection.ResumoFornecedor;
 import com.devllop.api.service.FornecedorService;
 
 @RestController
@@ -35,8 +38,13 @@ public class FornecedorResource {
 	private FornecedorService fornecedorService;
 	
 	@GetMapping
-	public List<Fornecedor> listar() {
-		return fornecedorRepository.findAll();
+	public Page<Fornecedor> pesquisar(FornecedorFilter fornecedorFilter, Pageable pageable) {
+		return fornecedorRepository.filtrar(fornecedorFilter, pageable);
+	}
+	
+	@GetMapping(params = "resumo")
+	public Page<ResumoFornecedor> resumir(FornecedorFilter fornecedorFilter, Pageable pageable) {
+		return fornecedorRepository.resumir(fornecedorFilter, pageable);
 	}
 	
 	@PostMapping

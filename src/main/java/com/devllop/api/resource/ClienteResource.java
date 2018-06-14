@@ -1,12 +1,12 @@
 package com.devllop.api.resource;
 
-import java.util.List;
-
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,6 +21,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.devllop.api.event.RecursoCriadoEvent;
 import com.devllop.api.model.Cliente;
 import com.devllop.api.repository.ClienteRepository;
+import com.devllop.api.repository.filter.ClienteFilter;
+import com.devllop.api.repository.projection.ResumoCliente;
 import com.devllop.api.service.ClienteService;
 
 @RestController
@@ -38,8 +40,13 @@ public class ClienteResource {
 	private ClienteService clienteService;
 	
 	@GetMapping
-	public List<Cliente> listar() {
-		return clienteRepository.findAll();
+	public Page<Cliente> pesquisar(ClienteFilter clienteFilter, Pageable pageable) {
+		return clienteRepository.filtrar(clienteFilter, pageable);
+	}
+
+	@GetMapping(params = "resumo")
+	public Page<ResumoCliente> resumir(ClienteFilter clienteFilter, Pageable pageable) {
+		return clienteRepository.resumir(clienteFilter, pageable);
 	}
 	
 	@GetMapping("/{id}")

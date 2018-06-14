@@ -17,7 +17,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.util.StringUtils;
 
 import com.devllop.api.model.Cliente_;
-import com.devllop.api.model.Fornecedor_;
 import com.devllop.api.model.Lancamento;
 import com.devllop.api.model.Lancamento_;
 import com.devllop.api.repository.filter.LancamentoFilter;
