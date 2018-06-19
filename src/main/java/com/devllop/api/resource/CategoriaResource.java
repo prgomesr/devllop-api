@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.devllop.api.event.RecursoCriadoEvent;
-import com.devllop.api.model.Categoria;
+import com.devllop.api.model.CategoriaReceber;
 import com.devllop.api.repository.CategoriaRepository;
 import com.devllop.api.service.CategoriaService;
 
@@ -36,13 +36,13 @@ public class CategoriaResource {
 	private CategoriaService categoriaService;
 	
 	@GetMapping
-	public List<Categoria> listar() {
+	public List<CategoriaReceber> listar() {
 		return categoriaRepository.findAll();
 	}
 	
 	@PostMapping
-	public ResponseEntity<Categoria> criar(@Valid @RequestBody Categoria banco, HttpServletResponse response ) {
-		Categoria categoriaSalva = categoriaRepository.save(banco);
+	public ResponseEntity<CategoriaReceber> criar(@Valid @RequestBody CategoriaReceber banco, HttpServletResponse response ) {
+		CategoriaReceber categoriaSalva = categoriaRepository.save(banco);
 		
 		publisher.publishEvent(new RecursoCriadoEvent(this, response, categoriaSalva.getId()));
 		
@@ -50,14 +50,14 @@ public class CategoriaResource {
 	}
 	
 	@GetMapping("/{id}")
-	public ResponseEntity<Categoria> buscarPeloId(@PathVariable Long id) {
-		Categoria banco  = categoriaRepository.findOne(id);
+	public ResponseEntity<CategoriaReceber> buscarPeloId(@PathVariable Long id) {
+		CategoriaReceber banco  = categoriaRepository.findOne(id);
 		return banco != null ? ResponseEntity.ok(banco) : ResponseEntity.notFound().build();
 	}
 	
 	@PutMapping("/{id}")
-	public ResponseEntity<Categoria> atualizar(@PathVariable Long id, @Valid @RequestBody Categoria banco) {
-		Categoria categoriaSalva = categoriaService.atualizar(id, banco);
+	public ResponseEntity<CategoriaReceber> atualizar(@PathVariable Long id, @Valid @RequestBody CategoriaReceber banco) {
+		CategoriaReceber categoriaSalva = categoriaService.atualizar(id, banco);
 		return ResponseEntity.ok(categoriaSalva);
 	}
 	

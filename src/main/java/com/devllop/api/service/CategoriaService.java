@@ -5,7 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
-import com.devllop.api.model.Categoria;
+import com.devllop.api.model.CategoriaReceber;
 import com.devllop.api.repository.CategoriaRepository;
 
 @Service
@@ -14,8 +14,8 @@ public class CategoriaService {
 	@Autowired
 	private CategoriaRepository categoriaRepository;
 	
-	public Categoria atualizar(Long id, Categoria banco) {
-		Categoria categoriaSalva = categoriaRepository.findOne(id);
+	public CategoriaReceber atualizar(Long id, CategoriaReceber banco) {
+		CategoriaReceber categoriaSalva = categoriaRepository.findOne(id);
 		if (categoriaSalva == null) {
 			throw new EmptyResultDataAccessException(1);
 		}
