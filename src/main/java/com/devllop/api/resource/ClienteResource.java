@@ -27,7 +27,6 @@ import com.devllop.api.service.ClienteService;
 
 @RestController
 @RequestMapping("/clientes")
-// @CrossOrigin(origins = {"http://localhost:4200"})
 public class ClienteResource {
 
 	@Autowired

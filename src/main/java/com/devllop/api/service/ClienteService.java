@@ -42,10 +42,6 @@ public class ClienteService {
 		if (cliente.getEndereco() == null) {
 			cliente.setEndereco(new Endereco());
 		}
-//		if (cliente.getNascimento() == null) {
-//			cliente.setNascimento();
-//		System.out.println(cliente.getNascimento());
-//		} TODO: VERIFICAR QUESTAO DA DATA DE NASCIMENTO
 		return cliente;
 	}
 
