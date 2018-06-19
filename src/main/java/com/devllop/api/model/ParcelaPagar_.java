@@ -11,6 +11,7 @@ import javax.persistence.metamodel.StaticMetamodel;
 public abstract class ParcelaPagar_ {
 
 	public static volatile SingularAttribute<ParcelaPagar, String> numDocumento;
+	public static volatile SingularAttribute<ParcelaPagar, String> situacao;
 	public static volatile SingularAttribute<ParcelaPagar, LocalDate> dataVencimento;
 	public static volatile SingularAttribute<ParcelaPagar, CategoriaPagamento> categoria;
 	public static volatile SingularAttribute<ParcelaPagar, BigDecimal> valor;
@@ -19,6 +20,7 @@ public abstract class ParcelaPagar_ {
 	public static volatile SingularAttribute<ParcelaPagar, Long> id;
 	public static volatile SingularAttribute<ParcelaPagar, Fornecedor> fornecedor;
 	public static volatile SingularAttribute<ParcelaPagar, LocalDate> dataEmissao;
+	public static volatile SingularAttribute<ParcelaPagar, String> descricao;
 
 }
 

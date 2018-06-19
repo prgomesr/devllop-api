@@ -39,6 +39,12 @@ public class ParcelaPagar {
 	private String numNf;
 	
 	@NotNull
+	private String descricao;
+	
+	@NotNull
+	private String situacao;
+	
+	@NotNull
 	@ManyToOne
 	@JoinColumn(name="conta_id")
 	private Conta conta;
@@ -99,6 +105,22 @@ public class ParcelaPagar {
 
 	public void setNumNf(String numNf) {
 		this.numNf = numNf;
+	}
+
+	public String getDescricao() {
+		return descricao;
+	}
+
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
+	}
+
+	public String getSituacao() {
+		return situacao;
+	}
+
+	public void setSituacao(String situacao) {
+		this.situacao = situacao;
 	}
 
 	public Conta getConta() {
