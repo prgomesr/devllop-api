@@ -30,7 +30,8 @@ public class ParcelaRecebimento {
 	private BigDecimal valorRecebido;
 	
 	@NotNull
-	@Column(name="parcela_receber")
+	@ManyToOne
+	@JoinColumn(name="parcela_receber_id")
 	private ParcelaReceber parcelaReceber;
 	
 	@NotNull
