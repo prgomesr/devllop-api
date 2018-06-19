@@ -1,29 +1,4 @@
 -- -----------------------------------------------------
--- Table `devllop`.`lancamento_pagar`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `devllop`.`lancamento_pagar` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `valor_total` DECIMAL(10,2) NOT NULL,
-  `data_lancamento` DATETIME NOT NULL,
-  `num_documento` VARCHAR(45) NULL,
-  `fornecedor_id` INT NOT NULL,
-  `categoria_pagamento_id` INT NOT NULL,
-  PRIMARY KEY (`id`),
-  INDEX `fk_lancamento_pagar_fornecedor1_idx` (`fornecedor_id` ASC),
-  INDEX `fk_lancamento_pagar_categoria_pagamento1_idx` (`categoria_pagamento_id` ASC),
-  CONSTRAINT `fk_lancamento_pagar_fornecedor1`
-    FOREIGN KEY (`fornecedor_id`)
-    REFERENCES `devllop`.`fornecedor` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_lancamento_pagar_categoria_pagamento1`
-    FOREIGN KEY (`categoria_pagamento_id`)
-    REFERENCES `devllop`.`categoria_pagamento` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB default charset=utf8;
-
--- -----------------------------------------------------
 -- Table `devllop`.`parcela_pagar`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `devllop`.`parcela_pagar` (
@@ -31,49 +6,32 @@ CREATE TABLE IF NOT EXISTS `devllop`.`parcela_pagar` (
   `data_emissao` DATETIME NOT NULL,
   `data_vencimento` DATETIME NOT NULL,
   `valor` DECIMAL(10,2) NOT NULL,
-  `lancamento_pagar_id` INT NOT NULL,
+  `situacao` VARCHAR(45) NOT NULL,
+  `num_documento` VARCHAR(45) NULL,
+  `num_nf` VARCHAR(45) NULL,
   `conta_id` INT NOT NULL,
+  `fornecedor_id` INT NOT NULL,
+  `categoria_pagamento_id` INT NOT NULL,
   PRIMARY KEY (`id`),
-  INDEX `fk_parcela_pagar_lancamento_pagar1_idx` (`lancamento_pagar_id` ASC),
   INDEX `fk_parcela_pagar_conta1_idx` (`conta_id` ASC),
-  CONSTRAINT `fk_parcela_pagar_lancamento_pagar1`
-    FOREIGN KEY (`lancamento_pagar_id`)
-    REFERENCES `devllop`.`lancamento_pagar` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
+  INDEX `fk_parcela_pagar_fornecedor1_idx` (`fornecedor_id` ASC),
+  INDEX `fk_parcela_pagar_categoria_pagamento1_idx` (`categoria_pagamento_id` ASC),
   CONSTRAINT `fk_parcela_pagar_conta1`
     FOREIGN KEY (`conta_id`)
     REFERENCES `devllop`.`conta` (`id`)
     ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB default charset=utf8;
-
--- -----------------------------------------------------
--- Table `devllop`.`lancamento_receber`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `devllop`.`lancamento_receber` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `valor_total` DECIMAL(10,2) NOT NULL,
-  `valor_a_receber` DECIMAL(10,2) NOT NULL,
-  `data_lancamento` DATETIME NOT NULL,
-  `num_documento` VARCHAR(45) NULL,
-  `cliente_id` INT NOT NULL,
-  `categoria_recebimento_id` INT NOT NULL,
-  PRIMARY KEY (`id`),
-  INDEX `fk_lancemento_receber_cliente1_idx` (`cliente_id` ASC),
-  INDEX `fk_lancemento_receber_categoria_recebimento1_idx` (`categoria_recebimento_id` ASC),
-  CONSTRAINT `fk_lancemento_receber_cliente1`
-    FOREIGN KEY (`cliente_id`)
-    REFERENCES `devllop`.`cliente` (`id`)
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_parcela_pagar_fornecedor1`
+    FOREIGN KEY (`fornecedor_id`)
+    REFERENCES `devllop`.`fornecedor` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `fk_lancemento_receber_categoria_recebimento1`
-    FOREIGN KEY (`categoria_recebimento_id`)
-    REFERENCES `devllop`.`categoria_recebimento` (`id`)
+  CONSTRAINT `fk_parcela_pagar_categoria_pagamento1`
+    FOREIGN KEY (`categoria_pagamento_id`)
+    REFERENCES `devllop`.`categoria_pagamento` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB default charset=utf8;
-
 
 -- -----------------------------------------------------
 -- Table `devllop`.`parcela_receber`
@@ -83,19 +41,30 @@ CREATE TABLE IF NOT EXISTS `devllop`.`parcela_receber` (
   `data_emissao` DATETIME NOT NULL,
   `data_vencimento` DATETIME NOT NULL,
   `valor` DECIMAL(10,2) NOT NULL,
-  `lancamento_receber_id` INT NOT NULL,
+  `situacao` VARCHAR(45) NOT NULL,
+  `descricao` VARCHAR(100) NOT NULL,
+  `num_documento` VARCHAR(45) NULL,
+  `nosso_numero` VARCHAR(45) NULL,
   `conta_id` INT NOT NULL,
+  `cliente_id` INT NOT NULL,
+  `categoria_recebimento_id` INT NOT NULL,
   PRIMARY KEY (`id`),
-  INDEX `fk_parcela_receber_lancemento_receber1_idx` (`lancamento_receber_id` ASC),
   INDEX `fk_parcela_receber_conta1_idx` (`conta_id` ASC),
-  CONSTRAINT `fk_parcela_receber_lancemento_receber1`
-    FOREIGN KEY (`lancamento_receber_id`)
-    REFERENCES `devllop`.`lancamento_receber` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
+  INDEX `fk_parcela_receber_cliente1_idx` (`cliente_id` ASC),
+  INDEX `fk_parcela_receber_categoria_recebimento1_idx` (`categoria_recebimento_id` ASC),
   CONSTRAINT `fk_parcela_receber_conta1`
     FOREIGN KEY (`conta_id`)
     REFERENCES `devllop`.`conta` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_parcela_receber_cliente1`
+    FOREIGN KEY (`cliente_id`)
+    REFERENCES `devllop`.`cliente` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_parcela_receber_categoria_recebimento1`
+    FOREIGN KEY (`categoria_recebimento_id`)
+    REFERENCES `devllop`.`categoria_recebimento` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB default charset=utf8;
@@ -131,6 +100,7 @@ CREATE TABLE IF NOT EXISTS `devllop`.`parcela_recebimento` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB default charset=utf8;
+
 
 -- -----------------------------------------------------
 -- Table `devllop`.`parcela_pagamento`

@@ -9,7 +9,8 @@ INSERT INTO  `categoria_pagamento` (`descricao`) VALUES ('Folha de pagamento');
 INSERT INTO  `categoria_pagamento` (`descricao`) VALUES ('Outros');
 
 INSERT INTO  `categoria_recebimento` (`descricao`) VALUES ('Mensalidade');
-INSERT INTO  `categoria_recebimento` (`descricao`) VALUES ('Recebimento diverso');
+INSERT INTO  `categoria_recebimento` (`descricao`) VALUES ('Aluguel');
+INSERT INTO  `categoria_recebimento` (`descricao`) VALUES ('Recebimentos diversos');
 INSERT INTO  `categoria_recebimento` (`descricao`) VALUES ('Outros');
 
 INSERT INTO  `tipo_lancamento` (`descricao`) VALUES ('Dinheiro');

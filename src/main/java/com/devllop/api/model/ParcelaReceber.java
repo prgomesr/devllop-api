@@ -31,16 +31,33 @@ public class ParcelaReceber {
 	
 	@NotNull
 	private BigDecimal valor;
-
-	@NotNull
-	@ManyToOne
-	@JoinColumn(name="lancamento_receber_id")
-	private LancamentoReceber lancamentoReceber;
 	
+	@NotNull
+	private String situacao;
+	
+	@NotNull
+	private String descricao;
+
+	@Column(name="num_documento")
+	private String numDocumento;
+	
+	@Column(name="nosso_numero")
+	private String nossoNumero;
+
 	@NotNull
 	@ManyToOne
 	@JoinColumn(name="conta_id")
 	private Conta conta;
+	
+	@NotNull
+	@ManyToOne
+	@JoinColumn(name="cliente_id")
+	private Cliente cliente;
+	
+	@NotNull
+	@ManyToOne
+	@JoinColumn(name="categoria_recebimento_id")
+	private CategoriaRecebimento categoria;
 	
 	public Long getId() {
 		return id;
@@ -74,12 +91,36 @@ public class ParcelaReceber {
 		this.valor = valor;
 	}
 
-	public LancamentoReceber getLancamentoReceber() {
-		return lancamentoReceber;
+	public String getSituacao() {
+		return situacao;
 	}
 
-	public void setLancamentoReceber(LancamentoReceber lancamentoReceber) {
-		this.lancamentoReceber = lancamentoReceber;
+	public void setSituacao(String situacao) {
+		this.situacao = situacao;
+	}
+
+	public String getDescricao() {
+		return descricao;
+	}
+
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
+	}
+
+	public String getNumDocumento() {
+		return numDocumento;
+	}
+
+	public void setNumDocumento(String numDocumento) {
+		this.numDocumento = numDocumento;
+	}
+
+	public String getNossoNumero() {
+		return nossoNumero;
+	}
+
+	public void setNossoNumero(String nossoNumero) {
+		this.nossoNumero = nossoNumero;
 	}
 
 	public Conta getConta() {
@@ -88,6 +129,22 @@ public class ParcelaReceber {
 
 	public void setConta(Conta conta) {
 		this.conta = conta;
+	}
+
+	public Cliente getCliente() {
+		return cliente;
+	}
+
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
+	}
+
+	public CategoriaRecebimento getCategoria() {
+		return categoria;
+	}
+
+	public void setCategoria(CategoriaRecebimento categoria) {
+		this.categoria = categoria;
 	}
 
 	@Override

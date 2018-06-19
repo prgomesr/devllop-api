@@ -18,31 +18,31 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.devllop.api.event.RecursoCriadoEvent;
-import com.devllop.api.model.CategoriaReceber;
-import com.devllop.api.repository.CategoriaRepository;
-import com.devllop.api.service.CategoriaService;
+import com.devllop.api.model.CategoriaPagamento;
+import com.devllop.api.repository.CategoriaPagamentoRepository;
+import com.devllop.api.service.CategoriaPagamentoService;
 
 @RestController
-@RequestMapping("/categorias")
-public class CategoriaResource {
+@RequestMapping("/categoriasPagamentos")
+public class CategoriaPagamentoResource {
 
 	@Autowired
 	private ApplicationEventPublisher publisher;
 	
 	@Autowired
-	private CategoriaRepository categoriaRepository;
+	private CategoriaPagamentoRepository categoriaRepository;
 	
 	@Autowired
-	private CategoriaService categoriaService;
+	private CategoriaPagamentoService categoriaService;
 	
 	@GetMapping
-	public List<CategoriaReceber> listar() {
+	public List<CategoriaPagamento> listar() {
 		return categoriaRepository.findAll();
 	}
 	
 	@PostMapping
-	public ResponseEntity<CategoriaReceber> criar(@Valid @RequestBody CategoriaReceber banco, HttpServletResponse response ) {
-		CategoriaReceber categoriaSalva = categoriaRepository.save(banco);
+	public ResponseEntity<CategoriaPagamento> criar(@Valid @RequestBody CategoriaPagamento categoria, HttpServletResponse response ) {
+		CategoriaPagamento categoriaSalva = categoriaRepository.save(categoria);
 		
 		publisher.publishEvent(new RecursoCriadoEvent(this, response, categoriaSalva.getId()));
 		
@@ -50,14 +50,14 @@ public class CategoriaResource {
 	}
 	
 	@GetMapping("/{id}")
-	public ResponseEntity<CategoriaReceber> buscarPeloId(@PathVariable Long id) {
-		CategoriaReceber banco  = categoriaRepository.findOne(id);
-		return banco != null ? ResponseEntity.ok(banco) : ResponseEntity.notFound().build();
+	public ResponseEntity<CategoriaPagamento> buscarPeloId(@PathVariable Long id) {
+		CategoriaPagamento categoria  = categoriaRepository.findOne(id);
+		return categoria != null ? ResponseEntity.ok(categoria) : ResponseEntity.notFound().build();
 	}
 	
 	@PutMapping("/{id}")
-	public ResponseEntity<CategoriaReceber> atualizar(@PathVariable Long id, @Valid @RequestBody CategoriaReceber banco) {
-		CategoriaReceber categoriaSalva = categoriaService.atualizar(id, banco);
+	public ResponseEntity<CategoriaPagamento> atualizar(@PathVariable Long id, @Valid @RequestBody CategoriaPagamento categoria) {
+		CategoriaPagamento categoriaSalva = categoriaService.atualizar(id, categoria);
 		return ResponseEntity.ok(categoriaSalva);
 	}
 	

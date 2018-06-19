@@ -9,8 +9,8 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Entity
-@Table(name="categoria")
-public class CategoriaReceber {
+@Table(name="categoria_recebimento")
+public class CategoriaRecebimento {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -48,7 +48,7 @@ public class CategoriaReceber {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		CategoriaReceber other = (CategoriaReceber) obj;
+		CategoriaRecebimento other = (CategoriaRecebimento) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;

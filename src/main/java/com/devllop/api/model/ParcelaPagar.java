@@ -32,16 +32,26 @@ public class ParcelaPagar {
 	@NotNull
 	private BigDecimal valor;
 	
+	@Column(name="num_documento")
+	private String numDocumento;
 	
-	@NotNull
-	@ManyToOne
-	@JoinColumn(name="lancamento_pagar_id")
-	private LancamentoPagar lancamentoPagar;
+	@Column(name="num_nf")
+	private String numNf;
 	
 	@NotNull
 	@ManyToOne
 	@JoinColumn(name="conta_id")
 	private Conta conta;
+
+	@NotNull
+	@ManyToOne
+	@JoinColumn(name="fornecedor_id")
+	private Fornecedor fornecedor;
+
+	@NotNull
+	@ManyToOne
+	@JoinColumn(name="categoria_pagamento_id")
+	private CategoriaPagamento categoria;
 
 	public Long getId() {
 		return id;
@@ -75,12 +85,20 @@ public class ParcelaPagar {
 		this.valor = valor;
 	}
 
-	public LancamentoPagar getLancamentoPagar() {
-		return lancamentoPagar;
+	public String getNumDocumento() {
+		return numDocumento;
 	}
 
-	public void setLancamentoPagar(LancamentoPagar lancamentoPagar) {
-		this.lancamentoPagar = lancamentoPagar;
+	public void setNumDocumento(String numDocumento) {
+		this.numDocumento = numDocumento;
+	}
+
+	public String getNumNf() {
+		return numNf;
+	}
+
+	public void setNumNf(String numNf) {
+		this.numNf = numNf;
 	}
 
 	public Conta getConta() {
@@ -89,6 +107,22 @@ public class ParcelaPagar {
 
 	public void setConta(Conta conta) {
 		this.conta = conta;
+	}
+
+	public Fornecedor getFornecedor() {
+		return fornecedor;
+	}
+
+	public void setFornecedor(Fornecedor fornecedor) {
+		this.fornecedor = fornecedor;
+	}
+
+	public CategoriaPagamento getCategoria() {
+		return categoria;
+	}
+
+	public void setCategoria(CategoriaPagamento categoria) {
+		this.categoria = categoria;
 	}
 
 	@Override
