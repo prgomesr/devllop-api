@@ -58,7 +58,7 @@ public class FornecedorResource {
 	
 	@GetMapping("/{id}")
 	public ResponseEntity<Fornecedor> buscarPeloId(@PathVariable Long id) {
-		Fornecedor fornecedor  = fornecedorRepository.findOne(id);
+		Fornecedor fornecedor  = fornecedorService.buscarPorId(id);
 		return fornecedor != null ? ResponseEntity.ok(fornecedor) : ResponseEntity.notFound().build();
 	}
 	

@@ -7,6 +7,7 @@ public class ResumoLancamento {
 	
 	private Long id;
 	private String cliente;
+	private String fornecedor;
 	private String descricao;
 	private BigDecimal valor;
 	private LocalDate dataVencimento;
@@ -14,11 +15,12 @@ public class ResumoLancamento {
 	private String situacao;
 	private String tipo;
 	
-	public ResumoLancamento(Long id, String cliente, String descricao, BigDecimal valor,
+	public ResumoLancamento(Long id, String cliente, String fornecedor ,String descricao, BigDecimal valor,
 			LocalDate dataVencimento, LocalDate dataPagamento, String situacao, String tipo) {
 		super();
 		this.id = id;
 		this.cliente = cliente;
+		this.fornecedor = fornecedor;
 		this.descricao = descricao;
 		this.valor = valor;
 		this.dataVencimento = dataVencimento;
@@ -41,6 +43,14 @@ public class ResumoLancamento {
 
 	public void setCliente(String cliente) {
 		this.cliente = cliente;
+	}
+	
+	public String getFornecedor() {
+		return fornecedor;
+	}
+
+	public void setFornecedor(String fornecedor) {
+		this.fornecedor = fornecedor;
 	}
 
 	public String getDescricao() {

@@ -17,6 +17,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.util.StringUtils;
 
 import com.devllop.api.model.Cliente_;
+import com.devllop.api.model.Fornecedor_;
 import com.devllop.api.model.Lancamento;
 import com.devllop.api.model.Lancamento_;
 import com.devllop.api.repository.filter.LancamentoFilter;
@@ -49,16 +50,20 @@ public class LancamentoRepositoryImpl implements LancamentoRepositoryQuery {
 		CriteriaBuilder builder = manager.getCriteriaBuilder();
 		CriteriaQuery<ResumoLancamento> criteria = builder.createQuery(ResumoLancamento.class);
 		Root<Lancamento> root = criteria.from(Lancamento.class);
+		if (!StringUtils.isEmpty(root.get(Lancamento_.fornecedor).get(Fornecedor_.razaoSocial))) {
+			System.out.println("entrou");
+			criteria.select(builder.construct(ResumoLancamento.class, 
+					root.get(Lancamento_.id), 
+					root.get(Lancamento_.cliente).get(Cliente_.nome),
+					root.get(Lancamento_.fornecedor).get(Fornecedor_.razaoSocial),
+					root.get(Lancamento_.descricao), 
+					root.get(Lancamento_.valor), 
+					root.get(Lancamento_.dataVencimento),
+					root.get(Lancamento_.dataPagamento), 
+					root.get(Lancamento_.situacao), 
+					root.get(Lancamento_.tipo)));
+		}
 		
-		criteria.select(builder.construct(ResumoLancamento.class, 
-				root.get(Lancamento_.id), 
-				root.get(Lancamento_.cliente).get(Cliente_.nome),
-				root.get(Lancamento_.descricao), 
-				root.get(Lancamento_.valor), 
-				root.get(Lancamento_.dataVencimento),
-				root.get(Lancamento_.dataPagamento), 
-				root.get(Lancamento_.situacao), 
-				root.get(Lancamento_.tipo)));
 		
 		//criar restricoes
 				Predicate[] predicates = criarRestricoes(lancamentoFilter, builder, root);
