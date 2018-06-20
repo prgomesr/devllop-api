@@ -16,10 +16,7 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.util.StringUtils;
 
-import com.devllop.api.model.Cliente_;
 import com.devllop.api.model.Fornecedor_;
-import com.devllop.api.model.ParcelaPagar;
-import com.devllop.api.model.ParcelaPagar_;
 import com.devllop.api.model.ParcelaPagar;
 import com.devllop.api.model.ParcelaPagar_;
 import com.devllop.api.repository.filter.LancamentoPagarFilter;

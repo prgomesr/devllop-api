@@ -8,9 +8,10 @@ public class ResumoFornecedor {
 	private String cnpj;
 	private String telefonePrincipal;
 	private String email;
+	private Boolean ativo;
 	
 	public ResumoFornecedor(Long id, String razaoSocial, String fantasia, String cnpj, String telefonePrincipal,
-			String email) {
+			String email, Boolean ativo) {
 		super();
 		this.id = id;
 		this.razaoSocial = razaoSocial;
@@ -18,6 +19,7 @@ public class ResumoFornecedor {
 		this.cnpj = cnpj;
 		this.telefonePrincipal = telefonePrincipal;
 		this.email = email;
+		this.ativo = ativo;
 	}
 
 	public Long getId() {
@@ -66,6 +68,14 @@ public class ResumoFornecedor {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	public Boolean getAtivo() {
+		return ativo;
+	}
+
+	public void setAtivo(Boolean ativo) {
+		this.ativo = ativo;
 	}
 	
 }

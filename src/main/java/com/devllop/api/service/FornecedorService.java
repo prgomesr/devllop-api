@@ -31,4 +31,11 @@ public class FornecedorService {
 		}
 		return fornecedor;
 	}
+
+	public void atualizarPropriedadeAtivo(Long id, Boolean ativo) {
+		Fornecedor fornecedorSalvo = fornecedorRepository.findOne(id);
+		fornecedorSalvo.setAtivo(ativo);
+		fornecedorRepository.save(fornecedorSalvo);
+	}
+	
 }

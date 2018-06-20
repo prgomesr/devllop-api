@@ -1,2 +1,0 @@
-ALTER TABLE cliente
-ADD COLUMN `situacao` VARCHAR(20) NOT NULL AFTER `ativo`;

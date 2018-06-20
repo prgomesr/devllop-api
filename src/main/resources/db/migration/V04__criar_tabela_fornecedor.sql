@@ -1,7 +1,8 @@
-CREATE TABLE IF NOT EXISTS  `fornecedor` (
+CREATE TABLE IF NOT EXISTS `fornecedor` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `razao_social` VARCHAR(70) NOT NULL,
   `fantasia` VARCHAR(45) NOT NULL,
+  `ativo` TINYINT NOT NULL,
   `cnpj` VARCHAR(45) NULL,
   `insc_estadual` VARCHAR(45) NULL,
   `insc_municipal` VARCHAR(45) NULL,
@@ -11,12 +12,12 @@ CREATE TABLE IF NOT EXISTS  `fornecedor` (
   `contato` VARCHAR(45) NULL,
   `email` VARCHAR(70) NULL,
   `observacao` VARCHAR(255) NULL,
-  `endereco_id` INT NULL,
-  PRIMARY KEY (`id`),
-  INDEX `fk_FORNECEDOR_ENDERECO1_idx` (`endereco_id` ASC),
-  CONSTRAINT `fk_FORNECEDOR_ENDERECO1`
-    FOREIGN KEY (`endereco_id`)
-    REFERENCES  `endereco` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+  `end_logradouro` VARCHAR(70) NULL,
+  `end_numero` VARCHAR(10) NULL,
+  `end_complemento` VARCHAR(45) NULL,
+  `end_bairro` VARCHAR(70) NULL,
+  `end_cidade` VARCHAR(70) NULL,
+  `end_uf` CHAR(2) NULL,
+  `end_cep` VARCHAR(20) NULL,
+  PRIMARY KEY (`id`))
 ENGINE = InnoDB default charset=utf8;

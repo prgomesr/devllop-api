@@ -50,7 +50,7 @@ public class FornecedorRepositoryImpl implements FornecedorRepositoryQuery {
 
 		criteria.select(builder.construct(ResumoFornecedor.class, root.get(Fornecedor_.id), root.get(Fornecedor_.razaoSocial),
 				root.get(Fornecedor_.fantasia), root.get(Fornecedor_.cnpj), root.get(Fornecedor_.telefonePrincipal),
-				root.get(Fornecedor_.email)));
+				root.get(Fornecedor_.email), root.get(Fornecedor_.ativo)));
 
 		// criar restricoes
 		Predicate[] predicates = criarRestricoes(fornecedorFilter, builder, root);

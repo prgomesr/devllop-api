@@ -43,8 +43,8 @@ public class LancamentoReceberResource {
 	}
 
 	@GetMapping(params = "resumo")
-	public Page<ResumoLancamentoReceber> resumir(LancamentoReceberFilter clienteFilter, Pageable pageable) {
-		return repository.resumir(clienteFilter, pageable);
+	public Page<ResumoLancamentoReceber> resumir(LancamentoReceberFilter filter, Pageable pageable) {
+		return repository.resumir(filter, pageable);
 	}
 	
 	@GetMapping("/{id}")

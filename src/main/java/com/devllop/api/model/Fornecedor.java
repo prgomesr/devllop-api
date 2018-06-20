@@ -1,15 +1,12 @@
 package com.devllop.api.model;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -60,9 +57,10 @@ public class Fornecedor {
 	@Size(max=255)
 	private String observacao;
 	
-	@Transient
-	@OneToOne(cascade =  CascadeType.ALL)
-	@JoinColumn(name="endereco_id")
+	@NotNull
+	private Boolean ativo;
+	
+	@Embedded
 	private Endereco endereco;
 	
 	public Long getId() {
@@ -168,6 +166,14 @@ public class Fornecedor {
 
 	public void setEndereco(Endereco endereco) {
 		this.endereco = endereco;
+	}
+	
+	public Boolean getAtivo() {
+		return ativo;
+	}
+
+	public void setAtivo(Boolean ativo) {
+		this.ativo = ativo;
 	}
 
 	@Override
