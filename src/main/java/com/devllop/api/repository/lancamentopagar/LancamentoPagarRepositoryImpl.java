@@ -12,13 +12,16 @@ import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.util.StringUtils;
 
-import com.devllop.api.model.ParcelaPagar;
+import com.devllop.api.model.Cliente_;
+import com.devllop.api.model.Fornecedor_;
 import com.devllop.api.model.ParcelaPagar;
 import com.devllop.api.model.ParcelaPagar_;
-import com.devllop.api.repository.filter.LancamentoPagarFilter;
+import com.devllop.api.model.ParcelaPagar;
+import com.devllop.api.model.ParcelaPagar_;
 import com.devllop.api.repository.filter.LancamentoPagarFilter;
 import com.devllop.api.repository.projection.ResumoLancamentoPagar;
 
@@ -28,15 +31,39 @@ public class LancamentoPagarRepositoryImpl implements LancamentoPagarRepositoryQ
 	private EntityManager manager;
 
 	@Override
-	public Page<ParcelaPagar> filtrar(LancamentoPagarFilter filter, Pageable pageble) {
-		// TODO Auto-generated method stub
-		return null;
+	public Page<ParcelaPagar> filtrar(LancamentoPagarFilter filter, Pageable pageable) {
+		CriteriaBuilder builder = manager.getCriteriaBuilder();
+		CriteriaQuery<ParcelaPagar> criteria = builder.createQuery(ParcelaPagar.class);
+		Root<ParcelaPagar> root = criteria.from(ParcelaPagar.class);
+		
+		Predicate[] predicates = criarRestricoes(filter, builder, root);
+		criteria.where(predicates);
+		
+		TypedQuery<ParcelaPagar> query = manager.createQuery(criteria);
+		adicionarRestricoesDePaginacao(query, pageable);
+		
+		return new PageImpl<>(query.getResultList(), pageable, total(filter));
 	}
 
 	@Override
-	public Page<ResumoLancamentoPagar> resumir(LancamentoPagarFilter filter, Pageable pageble) {
-		// TODO Auto-generated method stub
-		return null;
+	public Page<ResumoLancamentoPagar> resumir(LancamentoPagarFilter filter, Pageable pageable) {
+		CriteriaBuilder builder = manager.getCriteriaBuilder();
+		CriteriaQuery<ResumoLancamentoPagar> criteria = builder.createQuery(ResumoLancamentoPagar.class);
+		Root<ParcelaPagar> root = criteria.from(ParcelaPagar.class);
+		
+		criteria.select(builder.construct(ResumoLancamentoPagar.class
+				, root.get(ParcelaPagar_.id), root.get(ParcelaPagar_.fornecedor).get(Fornecedor_.razaoSocial)
+				, root.get(ParcelaPagar_.descricao), root.get(ParcelaPagar_.valor)
+				, root.get(ParcelaPagar_.dataEmissao), root.get(ParcelaPagar_.dataVencimento)
+				, root.get(ParcelaPagar_.situacao)));
+		
+		Predicate[] predicates = criarRestricoes(filter, builder, root);
+		criteria.where(predicates);
+		
+		TypedQuery<ResumoLancamentoPagar> query = manager.createQuery(criteria);
+		adicionarRestricoesDePaginacao(query, pageable);
+		
+		return new PageImpl<>(query.getResultList(), pageable, total(filter));
 	}
 	
 	

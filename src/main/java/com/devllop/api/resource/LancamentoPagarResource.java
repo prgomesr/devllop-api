@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.devllop.api.event.RecursoCriadoEvent;
 import com.devllop.api.model.ParcelaPagar;
@@ -22,6 +24,8 @@ import com.devllop.api.repository.filter.LancamentoPagarFilter;
 import com.devllop.api.repository.projection.ResumoLancamentoPagar;
 import com.devllop.api.service.LancamentoPagarService;
 
+@RestController
+@RequestMapping("/lancamentosPagar")
 public class LancamentoPagarResource {
 
 	@Autowired
