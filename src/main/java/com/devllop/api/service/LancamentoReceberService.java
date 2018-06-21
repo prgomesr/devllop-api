@@ -27,4 +27,15 @@ public class LancamentoReceberService {
 		ParcelaReceber lancamento = repository.findOne(id);
 		return lancamento;
 	}
+
+	public ParcelaReceber emitirBoleto(Long id, ParcelaReceber lancamento) {
+		ParcelaReceber lancamentoSalvo = repository.findOne(id);
+		if (lancamentoSalvo == null) {
+			throw new EmptyResultDataAccessException(1);
+		}
+		
+		BeanUtils.copyProperties(lancamento, lancamentoSalvo, "id");
+		return repository.save(lancamentoSalvo);
+	}
+
 }
