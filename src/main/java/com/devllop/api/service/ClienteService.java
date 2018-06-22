@@ -6,6 +6,7 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
 import com.devllop.api.model.Cliente;
+import com.devllop.api.model.Endereco;
 import com.devllop.api.repository.ClienteRepository;
 
 @Service
@@ -38,6 +39,9 @@ public class ClienteService {
 
 	public Cliente buscarPorId(Long id) {
 		Cliente cliente = clienteRepository.findOne(id);
+		if (cliente.getEndereco() == null) {
+			cliente.setEndereco(new Endereco());
+		}
 		return cliente;
 	}
 

@@ -69,10 +69,10 @@ public class LancamentoReceberResource {
 		return ResponseEntity.ok(lancamentoSalvo);
 	}
 	
-	@PutMapping("/{id}/gerarBoletos")
-	public ResponseEntity<ParcelaReceber> gerarBoleto(@PathVariable Long id, @Valid @RequestBody ParcelaReceber lancamento) {
-		ParcelaReceber lancamentoSalvo = service.emitirBoleto(id, lancamento);
-		return ResponseEntity.ok(lancamentoSalvo);
-	}
+//	@PutMapping("/{id}/gerarBoletos")
+//	public ResponseEntity<ParcelaReceber> gerarBoleto(@PathVariable Long id, @Valid @RequestBody ParcelaReceber lancamento) {
+//		ParcelaReceber lancamentoSalvo = service.emitirBoleto(id, lancamento);
+//		return ResponseEntity.ok(lancamentoSalvo);
+//	}
 
 }

@@ -1,6 +1,7 @@
 package com.devllop.api.util.boleto;
 
 import java.io.File;
+import java.sql.Date;
 
 import org.jrimum.bopepo.BancosSuportados;
 import org.jrimum.bopepo.Boleto;
@@ -11,16 +12,22 @@ import org.jrimum.domkee.financeiro.banco.febraban.Cedente;
 import org.jrimum.domkee.financeiro.banco.febraban.ContaBancaria;
 import org.jrimum.domkee.financeiro.banco.febraban.NumeroDaConta;
 import org.jrimum.domkee.financeiro.banco.febraban.Sacado;
+import org.jrimum.domkee.financeiro.banco.febraban.TipoDeTitulo;
 import org.jrimum.domkee.financeiro.banco.febraban.Titulo;
+import org.jrimum.domkee.financeiro.banco.febraban.Titulo.Aceite;
+import org.springframework.beans.factory.annotation.Autowired;
 
-import com.devllop.api.model.Conta;
 import com.devllop.api.model.Empresa;
 import com.devllop.api.model.ParcelaReceber;
+import com.devllop.api.util.modulo11.GeradorDigitoVerificador;
 
 
 public class BopepoEmissorBoleto implements EmissorBoleto {
 
 	private static final long serialVersionUID = 1L;
+	
+	@Autowired
+	private GeradorDigitoVerificador geradorDigitoVerificador;
 
 	@Override
 	public byte[] gerarBoleto(Empresa empresa, ParcelaReceber lancamento) {
@@ -48,8 +55,22 @@ public class BopepoEmissorBoleto implements EmissorBoleto {
 	}
 
 	private Titulo criarTitulo(ContaBancaria contaBancaria, Sacado sacado, Cedente cedente, ParcelaReceber lancamento) {
-		// TODO Auto-generated method stub
-		return null;
+		Titulo titulo = new Titulo(contaBancaria, sacado, cedente);
+		
+		String codigo = this.geradorDigitoVerificador.completarComZeros(String.valueOf(lancamento.getId()));
+		titulo.setNumeroDoDocumento(codigo);
+		titulo.setNossoNumero(codigo);
+		titulo.setDigitoDoNossoNumero(this.geradorDigitoVerificador.gerarDigito(19, codigo));
+		
+		titulo.setValor(lancamento.getValor());
+		Date dataEmissao = Date.valueOf(lancamento.getDataEmissao());
+		Date dataVencimento = Date.valueOf(lancamento.getDataVencimento());
+		titulo.setDataDoDocumento(dataEmissao);
+		titulo.setDataDoVencimento(dataVencimento);
+		titulo.setTipoDeDocumento(TipoDeTitulo.DM_DUPLICATA_MERCANTIL);
+		titulo.setAceite(Aceite.N);
+		
+		return titulo;
 	}
 
 	private ContaBancaria criarContaBancaria(ParcelaReceber lancamento) {
