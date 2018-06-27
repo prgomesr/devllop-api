@@ -52,7 +52,7 @@ public class TipoLancamentoResource {
 	
 	@GetMapping("/{id}")
 	public ResponseEntity<TipoLancamento> buscarPeloId(@PathVariable Long id) {
-		TipoLancamento tipo  = tipoLancamentoRepository.findOne(id);
+		TipoLancamento tipo  = tipoLancamentoService.buscarPorId(id);
 		return tipo != null ? ResponseEntity.ok(tipo) : ResponseEntity.notFound().build();
 	}
 	

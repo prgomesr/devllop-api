@@ -51,7 +51,7 @@ public class AgenciaResource {
 	
 	@GetMapping("/{id}")
 	public ResponseEntity<Agencia> buscarPeloId(@PathVariable Long id) {
-		Agencia agencia  = agenciaRepository.findOne(id);
+		Agencia agencia  = agenciaRepository.getOne(id);
 		return agencia != null ? ResponseEntity.ok(agencia) : ResponseEntity.notFound().build();
 	}
 	

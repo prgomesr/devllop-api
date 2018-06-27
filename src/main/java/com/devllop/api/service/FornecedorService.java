@@ -1,5 +1,7 @@
 package com.devllop.api.service;
 
+import java.util.Optional;
+
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -16,7 +18,7 @@ public class FornecedorService {
 	private FornecedorRepository fornecedorRepository;
 	
 	public Fornecedor atualizar(Long id, Fornecedor fornecedor) {
-		Fornecedor fornecedorSalvo = fornecedorRepository.findOne(id);
+		Fornecedor fornecedorSalvo = buscarPorId(id);
 		if (fornecedorSalvo == null) {
 			throw new EmptyResultDataAccessException(1);
 		}
@@ -25,15 +27,18 @@ public class FornecedorService {
 	}
 
 	public Fornecedor buscarPorId(Long id) {
-		Fornecedor fornecedor = fornecedorRepository.findOne(id);
-		if (fornecedor.getEndereco() == null) {
-			fornecedor.setEndereco(new Endereco());
+		Optional<Fornecedor> fornecedor = fornecedorRepository.findById(id);
+		if (fornecedor.get().getEndereco() == null) {
+			fornecedor.get().setEndereco(new Endereco());
+			// evita que o cep seja preenchido ao clicar para editar um cadastro com
+			// cep preenchido e depois em outro com cep vazio
+			fornecedor.get().getEndereco().setCep("");
 		}
-		return fornecedor;
+		return fornecedor.get();
 	}
 
 	public void atualizarPropriedadeAtivo(Long id, Boolean ativo) {
-		Fornecedor fornecedorSalvo = fornecedorRepository.findOne(id);
+		Fornecedor fornecedorSalvo = buscarPorId(id);
 		fornecedorSalvo.setAtivo(ativo);
 		fornecedorRepository.save(fornecedorSalvo);
 	}

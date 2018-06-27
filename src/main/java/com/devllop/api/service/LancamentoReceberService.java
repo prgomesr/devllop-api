@@ -1,17 +1,14 @@
 package com.devllop.api.service;
 
-import javax.servlet.http.HttpServletResponse;
+import java.util.Optional;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
-import com.devllop.api.model.Empresa;
 import com.devllop.api.model.ParcelaReceber;
-import com.devllop.api.repository.EmpresaRepository;
 import com.devllop.api.repository.LancamentoReceberRepository;
-import com.devllop.api.util.boleto.EmissorBoleto;
 
 @Service
 public class LancamentoReceberService {
@@ -19,14 +16,8 @@ public class LancamentoReceberService {
 	@Autowired
 	private LancamentoReceberRepository repository;
 	
-	@Autowired
-	private EmpresaRepository empresaRepository;
-	
-//	@Autowired
-//	private EmissorBoleto emissorBoleto;
-	
 	public ParcelaReceber atualizar(Long id, ParcelaReceber lancamento) {
-		ParcelaReceber lancamentoSalvo = repository.findOne(id);
+		ParcelaReceber lancamentoSalvo = buscarPorId(id);
 		if (lancamentoSalvo == null) {
 			throw new EmptyResultDataAccessException(1);
 		}
@@ -35,13 +26,16 @@ public class LancamentoReceberService {
 	}
 	
 	public ParcelaReceber buscarPorId(Long id) {
-		ParcelaReceber lancamento = repository.findOne(id);
-		return lancamento;
+		Optional<ParcelaReceber> lancamento = repository.findById(id);
+		if (!lancamento.isPresent()) {
+			throw new EmptyResultDataAccessException(1);
+		}
+		return lancamento.get();
 	}
 
 //	public ParcelaReceber emitirBoleto(Long id, ParcelaReceber lancamento) {
-//		ParcelaReceber lancamentoSalvo = repository.findOne(id);
-//		Empresa empresa = empresaRepository.findOne(1L); 
+//		ParcelaReceber lancamentoSalvo = repository.getOne(id);
+//		Empresa empresa = empresaRepository.getOne(1L); 
 //		if (lancamentoSalvo == null) {
 //			throw new EmptyResultDataAccessException(1);
 //		}

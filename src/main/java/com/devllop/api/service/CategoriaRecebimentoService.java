@@ -1,5 +1,7 @@
 package com.devllop.api.service;
 
+import java.util.Optional;
+
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -13,13 +15,21 @@ public class CategoriaRecebimentoService {
 
 	@Autowired
 	private CategoriaRecebimentoRepository repository;
-	
+
 	public CategoriaRecebimento atualizar(Long id, CategoriaRecebimento categoria) {
-		CategoriaRecebimento categoriaSalva = repository.findOne(id);
+		CategoriaRecebimento categoriaSalva = buscarPorId(id);
 		if (categoriaSalva == null) {
 			throw new EmptyResultDataAccessException(1);
 		}
 		BeanUtils.copyProperties(categoria, categoriaSalva, "id");
 		return repository.save(categoriaSalva);
+	}
+
+	public CategoriaRecebimento buscarPorId(Long id) {
+		Optional<CategoriaRecebimento> recebimento = repository.findById(id);
+		if (!recebimento.isPresent()) {
+			throw new EmptyResultDataAccessException(1);
+		}
+		return recebimento.get();
 	}
 }

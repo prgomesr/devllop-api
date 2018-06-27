@@ -51,7 +51,7 @@ public class BancoResource {
 	
 	@GetMapping("/{id}")
 	public ResponseEntity<Banco> buscarPeloId(@PathVariable Long id) {
-		Banco banco  = bancoRepository.findOne(id);
+		Banco banco  = bancoService.buscarPorId(id);
 		return banco != null ? ResponseEntity.ok(banco) : ResponseEntity.notFound().build();
 	}
 	

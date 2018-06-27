@@ -51,7 +51,7 @@ public class ConvenioResource {
 	
 	@GetMapping("/{id}")
 	public ResponseEntity<Convenio> buscarPeloId(@PathVariable Long id) {
-		Convenio banco  = convenioRepository.findOne(id);
+		Convenio banco  = convenioService.buscarPorId(id);
 		return banco != null ? ResponseEntity.ok(banco) : ResponseEntity.notFound().build();
 	}
 	

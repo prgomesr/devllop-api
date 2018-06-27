@@ -51,7 +51,7 @@ public class CategoriaPagamentoResource {
 	
 	@GetMapping("/{id}")
 	public ResponseEntity<CategoriaPagamento> buscarPeloId(@PathVariable Long id) {
-		CategoriaPagamento categoria  = categoriaRepository.findOne(id);
+		CategoriaPagamento categoria  = categoriaService.buscarPorId(id);
 		return categoria != null ? ResponseEntity.ok(categoria) : ResponseEntity.notFound().build();
 	}
 	

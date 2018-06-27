@@ -51,7 +51,7 @@ public class EmpresaResource {
 	
 	@GetMapping("/{id}")
 	public ResponseEntity<Empresa> buscarPeloId(@PathVariable Long id) {
-		Empresa empresa  = empresaRepository.findOne(id);
+		Empresa empresa  = empresaService.buscarPorId(id);
 		return empresa != null ? ResponseEntity.ok(empresa) : ResponseEntity.notFound().build();
 	}
 	

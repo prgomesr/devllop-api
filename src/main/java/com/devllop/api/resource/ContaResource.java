@@ -51,7 +51,7 @@ public class ContaResource {
 	
 	@GetMapping("/{id}")
 	public ResponseEntity<Conta> buscarPeloId(@PathVariable Long id) {
-		Conta conta  = contaRepository.findOne(id);
+		Conta conta  = contaService.buscarPorId(id);
 		return conta != null ? ResponseEntity.ok(conta) : ResponseEntity.notFound().build();
 	}
 	

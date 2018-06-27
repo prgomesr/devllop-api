@@ -1,5 +1,7 @@
 package com.devllop.api.service;
 
+import java.util.Optional;
+
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -14,7 +16,7 @@ public class LancamentoPagarService {
 	private LancamentoPagarRepository repository;
 	
 	public ParcelaPagar atualizar(Long id, ParcelaPagar lancamento) {
-		ParcelaPagar lancamentoSalvo = repository.findOne(id);
+		ParcelaPagar lancamentoSalvo = buscarPorId(id);
 		if (lancamentoSalvo == null) {
 			throw new EmptyResultDataAccessException(1);
 		}
@@ -23,8 +25,11 @@ public class LancamentoPagarService {
 	}
 	
 	public ParcelaPagar buscarPorId(Long id) {
-		ParcelaPagar lancamento = repository.findOne(id);
-		return lancamento;
+		Optional<ParcelaPagar> lancamento = repository.findById(id);
+		if (!lancamento.isPresent()) {
+			throw new EmptyResultDataAccessException(1);
+		}
+		return lancamento.get();
 	}
 
 }
