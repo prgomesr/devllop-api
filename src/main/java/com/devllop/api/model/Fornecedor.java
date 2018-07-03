@@ -76,7 +76,7 @@ public class Fornecedor {
 	}
 	
 	public void setRazaoSocial(String razaoSocial) {
-		this.razaoSocial = razaoSocial.toUpperCase();
+		this.razaoSocial = razaoSocial;
 	}
 	
 	public String getFantasia() {
@@ -84,7 +84,7 @@ public class Fornecedor {
 	}
 	
 	public void setFantasia(String fantasia) {
-		this.fantasia = fantasia.toUpperCase();
+		this.fantasia = fantasia;
 	}
 	
 	public String getCnpj() {
