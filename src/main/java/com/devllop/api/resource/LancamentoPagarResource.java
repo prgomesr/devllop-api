@@ -1,5 +1,7 @@
 package com.devllop.api.resource;
 
+import java.math.BigDecimal;
+
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
@@ -18,10 +20,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.devllop.api.event.RecursoCriadoEvent;
+import com.devllop.api.model.Conta;
 import com.devllop.api.model.ParcelaPagar;
 import com.devllop.api.repository.LancamentoPagarRepository;
 import com.devllop.api.repository.filter.LancamentoPagarFilter;
 import com.devllop.api.repository.projection.ResumoLancamentoPagar;
+import com.devllop.api.service.ContaService;
 import com.devllop.api.service.LancamentoPagarService;
 
 @RestController
@@ -36,6 +40,9 @@ public class LancamentoPagarResource {
 	
 	@Autowired
 	private LancamentoPagarService service;
+	
+	@Autowired
+	private ContaService contaService;
 	
 	@GetMapping
 	public Page<ParcelaPagar> pesquisar(LancamentoPagarFilter filter, Pageable pageable) {
@@ -56,6 +63,11 @@ public class LancamentoPagarResource {
 	
 	@PostMapping
 	public ResponseEntity<ParcelaPagar> criar(@Valid @RequestBody ParcelaPagar lancamento, HttpServletResponse response ) {
+		
+		BigDecimal valor = lancamento.getValor();
+		Conta conta = contaService.buscarPorId(lancamento.getConta().getId());
+		conta.setSaldoAtual(conta.getSaldoAtual().subtract(valor));
+		
 		ParcelaPagar lancamentoSalvo = repository.save(lancamento);
 		
 		publisher.publishEvent(new RecursoCriadoEvent(this, response, lancamentoSalvo.getId()));
